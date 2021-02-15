@@ -18,9 +18,10 @@ public class Main {
 
     public void mainStart(){
         for (int i = 0; i < maxSize; i++) {
-            mal.add(random.nextInt(maxSize));
-            mal1.add(random.nextInt(maxSize));
-            mal2.add(random.nextInt(maxSize));
+            int value = random.nextInt(maxSize);
+            mal.add(value);
+            mal1.add(value);
+            mal2.add(value );
         }
         System.out.println("Массив создан!");
 
