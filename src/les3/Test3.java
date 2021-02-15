@@ -1,7 +1,7 @@
 package les3;
 
 import com.sun.jdi.CharValue;
-import les3.deque.DequeImpl;
+
 import les3.queue.IQueue;
 import les3.queue.PriorityQueueImpl;
 import les3.stack.IStack;
@@ -14,8 +14,7 @@ public class Test3 {
     public static void main(String[] args) {
 //        testStack();
 //        testQueue();
-        testDequeue();
-        overturnSring();
+
     }
 
     private static void testStack() {
@@ -65,87 +64,5 @@ public class Test3 {
         }
     }
 
-    private static void testDequeue(){
-        DequeImpl<Integer> deque = new DequeImpl<>(5);
 
-        for (int i = 0; i < 5; i++) {
-            deque.insertLeft(i+1);
-            System.out.println(deque.toString());
-        }
-        System.out.println("--------------------------------------------");
-        for (int i = 0; i < 5; i++) {
-            deque.removeLeft();
-            System.out.println(deque.toString());
-        }
-        System.out.println("--------------------------------------------");
-        for (int i = 0; i < 5; i++) {
-            deque.insertRight(i+1);
-            System.out.println(deque.toString());
-        }
-        System.out.println("--------------------------------------------");
-        for (int i = 0; i < 5; i++) {
-            deque.removeRight();
-            System.out.println(deque.toString());
-        }
-        System.out.println("--------------------------------------------");
-        boolean b = true;
-        for (int i = 0; i < 5; i++) {
-            if(b){
-                deque.insertRight(i);
-                System.out.println(deque.toString());
-                b = false;
-            } else {
-                deque.insertLeft(i);
-                System.out.println(deque.toString());
-                b = true;
-            }
-        }
-        System.out.println("--------------------------------------------");
-        for (int i = 0; i < 5; i++) {
-            deque.removeRight();
-            System.out.println(deque.toString());
-        }
-        System.out.println("--------------------------------------------");
-        b = true;
-        for (int i = 0; i < 5; i++) {
-            if(b){
-                deque.insertRight(i);
-                System.out.println(deque.toString());
-                b = false;
-            } else {
-                deque.insertLeft(i);
-                System.out.println(deque.toString());
-                b = true;
-            }
-        }
-        System.out.println("--------------------------------------------");
-        for (int i = 0; i < 5; i++) {
-            deque.removeLeft();
-            System.out.println(deque.toString());
-        }
-
-
-    }
-
-    private static void overturnSring(){
-        System.out.println();
-        System.out.println("overturnSring()");
-        System.out.println();
-
-        String str = "gnirtS ruoy";
-
-        System.out.println(str);
-
-        char[] overturnStr = str.toCharArray();
-
-        IStack<Character> stack = new StackImpl<>(overturnStr.length);
-
-        for (int i = 0; i < overturnStr.length; i++) {
-            stack.push(overturnStr[i]);
-        }
-
-        for (int i = 0; i < overturnStr.length; i++) {
-            System.out.print(stack.pop());
-        }
-    };
 }
