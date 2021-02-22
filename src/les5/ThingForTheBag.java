@@ -25,10 +25,10 @@ public class ThingForTheBag {
 
     @Override
     public String toString() {
-        return "ThingForTheBag{" +
-                "name='" + name + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
+        return "T{" +
+                "n:'" + name + '\'' +
+                ", w:" + weight +
+                ", p:" + price +
                 '}';
     }
 }
