@@ -8,6 +8,7 @@ public class SearchMaxCount {
     ThingForTheBag[][] arr;
     ThingForTheBag[] maxCombo;
     int maxComboWeig;
+    int maxComboCount;
 
     public SearchMaxCount(ThingForTheBag[] rr, int maxWeig) {
         this.rr = rr;
@@ -19,26 +20,42 @@ public class SearchMaxCount {
         searchCombo(0,0);
     }
 
-    private void searchCombo(int newSize1, int newSize) {
+    private void searchCombo(int i, int newSize) {
         int weigth = 0;
         int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length-newSize; j++) {
-                weigth += arr[i][j].getWeight();
-                count += arr[i][j].getPrice();
-                System.out.println(arr[i][j].toString());
-            }
-            System.out.println("------------------------------------------------------------");
-            System.out.print(weigth+" - ");
-            System.out.println(count);
-            if(weigth > maxWeig) {
-                System.out.println("tutututututu");
-                searchCombo(newSize1 + 1,newSize + 1);
-                break;
-            }
-            weigth = 0;
-            count = 0;
+        if (i >= arr.length){
+            return;
         }
+        for (int j = 0; j < arr[i].length-newSize; j++) {
+            weigth += arr[i][j].getWeight();
+            count += arr[i][j].getPrice();
+            System.out.println(arr[i][j].toString());
+                /*if(count >= maxComboWeig && weigth <= maxWeig){
+                    System.out.println(arr[i][j].toString());
+                }*/
+        }
+        if(count < maxComboCount) {
+            maxComboCount = count;
+        }
+        System.out.println("-------------------------------------------------------");
+        if (weigth > maxWeig){
+            searchCombo(i,newSize + 1);
+        } else if (count < maxComboCount) {
+            searchCombo(i + 1,newSize);
+        }
+        /*System.out.println(weigth+" - "+ count);
+        System.out.println("------------------------------------------------------------");
+        if(weigth > maxWeig) {
+            searchCombo(i + 1,newSize + 1);
+        }
+        if (count >= maxComboWeig){
+            maxComboWeig = count;
+            System.out.println("----");
+            System.out.println(maxComboWeig);
+            System.out.println("----");
+        }*/
+        /*weigth = 0;
+        count = 0;*/
     }
 
 

@@ -11,9 +11,9 @@ public class Main {
     final ThingForTheBag aa4 = new ThingForTheBag("awm", 7,50);
     final ThingForTheBag aa5 = new ThingForTheBag("explosion package", 2,30);
 
-    final ThingForTheBag[] thing = {aa1, aa2, aa3, aa4/*, aa5*/};
-    //final int w = 11;
-    final int w = 7;
+    final ThingForTheBag[] thing = {aa1, aa2, aa3, aa4, aa5};
+    final int w = 11;
+    //final int w = 7;
 
     public static void main(String[] args) {
         //System.out.println(exponentiation(5 , 5));
