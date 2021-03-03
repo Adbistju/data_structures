@@ -1,5 +1,8 @@
 package Les7;
 
+import java.util.List;
+import java.util.Stack;
+
 public interface IGraph {
 
     void addVertex(String label);
@@ -21,4 +24,6 @@ public interface IGraph {
      * англ. breadth-first search, BFS
      */
     void bfs(String startLabel);
+
+    List<Stack<String>> findShortPathViaBfs(String startLabel, String finishLabel);
 }

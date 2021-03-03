@@ -112,6 +112,46 @@ public class Graph implements IGraph {
         resetVertexState();
     }
 
+    @Override
+    public List<Stack<String>> findShortPathViaBfs(String startLabel, String finishLabel) {
+        int startIndex = indexOf(startLabel);
+        int finishIndex = indexOf(finishLabel);
+        if (startIndex == -1) {
+            throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
+        }
+        if (finishIndex == -1) {
+            throw new IllegalArgumentException("Invalid finishLabel: " + finishLabel);
+        }
+
+        Queue<Vertex> queue = new ArrayDeque<>();
+
+        Vertex vertex = vertexList.get(startIndex);
+        visitVertex(queue, vertex);
+
+        List<Stack<String>> result = new ArrayList<>();
+        Vertex finishVertex = null;
+
+        while (!queue.isEmpty()) {
+            vertex = getNearUnvisitedVertex(queue.peek());
+            if (vertex == null) {
+                if (finishVertex != null) {
+                    finishVertex.setVisited(false);
+                }
+                queue.remove();
+            } else {
+                visitVertex(queue, vertex);
+                vertex.setPreviousVertex(queue.peek());
+                if (vertex.getLabel().equals(finishLabel)) {
+                    result.add(buildPath(vertex));
+                    finishVertex = vertex;
+                }
+            }
+        }
+
+        resetVertexState();
+        return result;
+    }
+
     private void resetVertexState() {
         for (Vertex vertex : vertexList) {
             vertex.setVisited(false);
@@ -137,5 +177,34 @@ public class Graph implements IGraph {
         System.out.println(vertex);
         vertex.setVisited(true);
         queue.add(vertex);
+    }
+
+    private Stack<String> buildPath(Vertex vertex) {
+        Stack<String> stack = new Stack<>();
+        Vertex current = vertex;
+        while (current != null) {
+            stack.push(current.getLabel());
+            current = current.getPreviousVertex();
+        }
+
+        return stack;
+    }
+
+    public void printZavis(){
+        for (int i = 0; i < adjMat.length; i++) {
+            for (int j = 0; j < adjMat[i].length; j++) {
+                if(adjMat[i][j] == false && i != j){
+                    System.out.print("\u001B[34m"+adjMat[i][j]+ " "+"\u001B[0m");
+                } else if (i == j){
+                    System.out.print("\u001B[31m"+adjMat[i][j]+ " "+"\u001B[0m");
+                }
+                else {
+                    System.out.print(adjMat[i][j]+ "  ");
+                }
+
+            }
+            System.out.println();
+        }
+
     }
 }
